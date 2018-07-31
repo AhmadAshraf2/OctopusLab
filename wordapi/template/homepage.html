@@ -1,0 +1,11 @@
+<html>
+   <head>
+   </head>
+   <body>
+     <form action="/website" method="post">
+       <div>"url : " <input type="text" name="url"/></div>
+       <div><input type="submit" value="enter"/></div>
+       {% module xsrf_form_html() %}
+     </form>
+   </body>
+ </html>

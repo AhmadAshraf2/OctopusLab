@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+   db:
+        image: mysql:5.7
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: word
+            MYSQL_DATABASE: word
+            MYSQL_USER: word
+            MYSQL_PASSWORD: word
+        ports:
+            - "3316:3306"
+        expose:
+            - "3306"
+
+   web:
+        container_name: "tornado_container"
+        build:
+            context: ./
+            dockerfile: ./dockers/Dockerfile
+        volumes:
+            - .:/code
+        ports:
+            - "8888:8888"
+        expose:
+            - "8888"
+        links:
+            - db
+        depends_on:
+            - db
+        command: ["./dockers/wait_for_it.sh", "127.0.0.1:3306", "--", "python",  "server.py"]
