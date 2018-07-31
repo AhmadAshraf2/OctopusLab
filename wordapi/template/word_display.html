@@ -1,0 +1,19 @@
+<html>
+   <head>
+      <title>"Word Count"</title>
+   </head>
+   <body>
+        <table>
+            <tr>
+                <th>word</th>
+                <th>frequency</th>
+            </tr>
+            {% for item, freq in items.items() %}
+            <tr>
+                <td>{{ escape(item) }}</td>
+                <td>{{ escape(str(freq)) }}</td>
+            </tr>
+            {% end %}
+        </table>
+   </body>
+ </html>
